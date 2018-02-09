@@ -9,9 +9,9 @@ def random_df(N=100,columns=None):
         raise ValueError("Must pass a list of columns")
 
     k = len(columns)
-    data = np.random.rand(N,k)
+    data = np.random.rand(N,k+1)
 
-    return pd.DataFrame(data=data,columns=columns)
+    return pd.DataFrame(data=data,columns=columns + ['other'])
 
 columns = list('ABCD')
 df1 = random_df(columns=columns)
