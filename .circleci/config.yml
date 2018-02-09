@@ -24,9 +24,40 @@ jobs:
             - "/home/circleci/.local/share/virtualenvs"
             - "/usr/local/bin"
             - "/usr/local/lib/python3.6/site-packages"
+  test1:
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps-{{ .Branch }}-{{ checksum "Pipfile.lock" }}-{{ checksum ".circleci/config.yml" }}
       - run:
           name: run tests
           command: |
-            pipenv run "nosetests ."
+            pipenv run "nosetests -q -s tests.test_my_module"
+
+  test2:
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps-{{ .Branch }}-{{ checksum "Pipfile.lock" }}-{{ checksum ".circleci/config.yml" }}
+      - run:
+          name: run tests
+          command: |
+            pipenv run "nosetests -q -s tests.test_my_module2"
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test1
+          requires:
+            - build
+      - test2
+          requires:
+            - build
           
     
