@@ -13,7 +13,7 @@ jobs:
           name: install dependencies
           command: |
             pip install pipenv
-            if [[ "$(ls -A ~/.local/share/virtualenvs/)" ]]; then 
+            if [[ "$(ls -A /home/circleci/.local/share/virtualenvs)" ]]; then 
               echo "Use cache env" 
             else 
               pipenv install -d 
@@ -21,7 +21,7 @@ jobs:
       - save_cache:
           key: deps12-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
           paths:
-            - ".local/share/virtualenvs/"
+            - "/home/circleci/.local/share/virtualenvs"
             - "/usr/local/bin"
             - "/usr/local/lib/python3.6/site-packages"
       - run:
