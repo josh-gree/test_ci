@@ -13,7 +13,7 @@ class TestMyModule(TestCase):
 
     def test_random_df(self):
         
-        columns = ['Bob','Steve']
+        columns = ['Bob','Steven']
         N = 1000
 
         df = random_df(N=N,columns=columns)
