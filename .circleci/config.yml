@@ -51,7 +51,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            pipenv run "nosetests -q -s tests.test_my_module2"
+            pipenv run "nosetests -q -s tests.test_my_module_2"
 
 workflows:
   version: 2
