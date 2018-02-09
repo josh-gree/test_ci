@@ -25,9 +25,11 @@ jobs:
             - "/usr/local/bin"
             - "/usr/local/lib/python3.6/site-packages"
       - persist_to_workspace:
-          root: ~/
+          root: /
           paths:
-            - .
+            - home/circleci
+            - usr/local/bin
+            - usr/local/lib/python3.6/site-packages
 
   test1:
     docker:
@@ -35,7 +37,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/
+          at: /
       - run:
           name: run tests
           command: |
@@ -47,7 +49,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/
+          at: /
       - run:
           name: run tests
           command: |
