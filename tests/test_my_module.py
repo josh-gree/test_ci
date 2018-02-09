@@ -18,7 +18,7 @@ class TestMyModule(TestCase):
 
         df = random_df(N=N,columns=columns)
 
-        self.assertTrue((df.columns == columns).all())
+        self.assertTrue((df.columns == columns + ['other']).all())
 
 
     
