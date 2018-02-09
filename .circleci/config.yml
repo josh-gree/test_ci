@@ -26,34 +26,34 @@ jobs:
             - "/home/circleci/.local/share/virtualenvs"
             - "/usr/local/bin"
             - "/usr/local/lib/python3.6/site-packages"
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - .
 
   test1:
     docker:
       - image: circleci/python:3.6.1
     steps:
       - checkout
-      - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
-      - restore_cache:
-          key: deps-{{ .Branch }}-{{ checksum "Pipfile.lock" }}-{{ checksum ".circleci/config.yml" }}
+      - attach_workspace:
+          at: ~/
       - run:
           name: run tests
           command: |
-            pipenv run "nosetests -q -s tests.test_my_module"
+            ~/bin/pipenv run "nosetests -q -s tests.test_my_module"
 
   test2:
     docker:
       - image: circleci/python:3.6.1
     steps:
       - checkout
-      - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
-      - restore_cache:
-          key: deps-{{ .Branch }}-{{ checksum "Pipfile.lock" }}-{{ checksum ".circleci/config.yml" }}
+      - attach_workspace:
+          at: ~/
       - run:
           name: run tests
           command: |
-            pipenv run "nosetests -q -s tests.test_my_module_2"
+            ~/bin/pipenv run "nosetests -q -s tests.test_my_module_2"
 
 workflows:
   version: 2
