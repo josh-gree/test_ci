@@ -13,7 +13,7 @@ jobs:
           name: install dependencies
           command: |
             pip install pipenv
-            if [ "$(ls -A ~/.local/share/virtualenvs/)" ]; then echo "Use cache env" else pipenv install -d fi
+            if [[ "$(ls -A ~/.local/share/virtualenvs/)" ]]; then echo "Use cache env" else pipenv install -d fi
       - save_cache:
           key: deps12-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
           paths:
