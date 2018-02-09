@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6.2
+    steps:
+      - checkout
+    - run:
+        name: Install dependencies
+        command: |
+          pip install pipenv
+          pipenv install
+    - run:
+        name: Tests
+        command: |
+          pipenv run "nosetests ."
+    
