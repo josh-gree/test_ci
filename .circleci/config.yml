@@ -11,7 +11,7 @@ jobs:
           name: install dependencies
           command: |
             pip install pipenv
-            pipenv install
+            pipenv install -d
       - run:
           name: run tests
           command: |
