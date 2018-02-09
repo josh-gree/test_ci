@@ -13,10 +13,12 @@ jobs:
           name: install dependencies
           command: |
             pip install pipenv
+            mkdir ~/bin
+            cp /usr/local/bin/pipenv ~/bin/pipenv
             if [[ "$(ls -A /home/circleci/.local/share/virtualenvs)" ]]; then 
               echo "Use cache env" 
             else 
-              pipenv install -d 
+              ~/bin/pipenv install -d 
             fi
       - save_cache:
           key: deps-{{ .Branch }}-{{ checksum "Pipfile.lock" }}-{{ checksum ".circleci/config.yml" }}
