@@ -41,7 +41,8 @@ jobs:
       - run:
           name: run tests
           command: |
-            ~/bin/pipenv run "nosetests -q -s tests.test_my_module"
+            export PATH=~/.local/share/virtualenvs/project-zxI9dQ-Q/bin
+            pipenv run "nosetests -q -s tests.test_my_module"
 
   test2:
     docker:
@@ -53,7 +54,8 @@ jobs:
       - run:
           name: run tests
           command: |
-            ~/bin/pipenv run "nosetests -q -s tests.test_my_module_2"
+            export PATH=~/.local/share/virtualenvs/project-zxI9dQ-Q/bin
+            pipenv run "nosetests -q -s tests.test_my_module_2"
 
 workflows:
   version: 2
