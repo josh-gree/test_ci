@@ -18,6 +18,7 @@ ipython = "*"
 nose = "*"
 yamllint = "*"
 pipenv = "*"
+pew = "*"
 
 
 [requires]
