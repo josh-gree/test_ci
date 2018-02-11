@@ -17,6 +17,7 @@ requests = "*"
 ipython = "*"
 nose = "*"
 yamllint = "*"
+pipenv = "*"
 
 
 [requires]
