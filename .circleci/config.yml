@@ -13,8 +13,10 @@ jobs:
           name: install dependencies
           command: |
             pip install pipenv
-            mkdir ~/bin
-            cp /usr/local/bin/pipenv ~/bin/pipenv
+            # mkdir ~/.local/bin
+            # mkdir ~/.local/lib/python3.6/site-package
+            # cp /usr/local/bin/* ~/.local/bin
+            # cp /usr/local/lib/python3.6/site-package/* ~/.local/lib/python3.6/site-package
             if [[ "$(ls -A /home/circleci/.local/share/virtualenvs)" ]]; then 
               echo "Use cache env" 
             else 
@@ -41,7 +43,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            export PATH=~/.local/share/virtualenvs/project-zxI9dQ-Q/bin
+            export PATH=~/.local/share/virtualenvs/project-zxI9dQ-Q/bin:$PATH
             pipenv run "nosetests -q -s tests.test_my_module"
 
   test2:
@@ -54,7 +56,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            export PATH=~/.local/share/virtualenvs/project-zxI9dQ-Q/bin
+            export PATH=~/.local/share/virtualenvs/project-zxI9dQ-Q/bin:$PATH
             pipenv run "nosetests -q -s tests.test_my_module_2"
 
 workflows:
