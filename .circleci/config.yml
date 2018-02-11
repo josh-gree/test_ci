@@ -20,7 +20,7 @@ jobs:
             if [[ "$(ls -A /home/circleci/.local/share/virtualenvs)" ]]; then 
               echo "Use cache env" 
             else 
-              ~/bin/pipenv install -d 
+              pipenv install -d 
             fi
       - save_cache:
           key: deps-{{ .Branch }}-{{ checksum "Pipfile.lock" }}-{{ checksum ".circleci/config.yml" }}
